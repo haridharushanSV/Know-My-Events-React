@@ -1,13 +1,13 @@
-
-
 import React, { useState, useEffect, useContext } from "react";
 import Eventcard from './Eventcard.jsx';
 import { SearchContext } from "./context/SearchContext";
 import './eventcard.css';
+import { ToastContainer, toast, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function CardList() {
   const { sreach } = useContext(SearchContext);
-  const [cardlist, setCardList] = useState([]);
+  const [cardlist, setCardList] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -21,46 +21,47 @@ function CardList() {
       });
   }, []);
 
+  if (!cardlist && !error) {
+    return (
+      <div style={{ textAlign: 'center', marginTop: '200px' }}>
+        <img
+          src="src/assets/loading.gif"
+          alt="loading"
+          style={{ height: '100px', width: '100px' }}
+        />
+      </div>
+    );
+  }
+
+ 
+
   const filtered = cardlist.filter((card) =>
     card.eve.toLowerCase().includes((sreach || "").toLowerCase())
   );
 
-  if (error) {
-    return (<>
-    
-         <p className='loading'>{ error && <img style={{
-                
-                 marginTop: '200px',
-               marginLeft: '45%',
-                 height: '100px',
-                 width: '100px'
-               }}
-
- src='src\assets\loading.gif' ></img> }</p>
-
-          
-    </>);
+  if (cardlist && filtered.length === 0 && sreach !== "") {
+    toast.info("No matching events found! 😔", {
+      position: "bottom-center",
+      autoClose: 3000,
+      theme: "dark",
+      transition: Bounce,
+    });
   }
 
   return (
     <>
-      {filtered.length > 0 ? (
-        filtered.map((card, index) => (
-          <Eventcard
-            key={index}
-            img={card.poster}
-            name={card.eve}
-            price={card.venue}
-            date={card.date}
-            contact={card.phone}
-            link={card.link}
-          />
-        ))
-      ) : (
-        <p style={{ textAlign: "center", marginTop: "20px" }}>
-          No matching events found 🥲
-        </p>
-      )}
+      {filtered.map((card, index) => (
+        <Eventcard
+          key={index}
+          img={card.poster}
+          name={card.eve}
+          price={card.venue}
+          date={card.date}
+          contact={card.phone}
+          link={card.link}
+        />
+      ))}
+      <ToastContainer />
     </>
   );
 }
