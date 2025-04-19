@@ -1,0 +1,22 @@
+[
+    
+    {
+      "eve": "Tech Talk 2025",
+      "venue": "Auditorium A",
+      "image": "https://via.placeholder.com/300x200.png?text=Tech+Talk+2025",
+      "link": "https://example.com/register/techtalk"
+    },
+    {
+      "eve": "Hackathon Blitz",
+      "venue": "Lab Block",
+      "image": "https://via.placeholder.com/300x200.png?text=Hackathon+Blitz",
+      "link": "https://example.com/register/hackathon"
+    },
+    {
+      "eve": "AI Workshop",
+      "venue": "Seminar Hall 2",
+      "image": "https://via.placeholder.com/300x200.png?text=AI+Workshop",
+      "link": "https://example.com/register/aiworkshop"
+    }
+  ]
+  

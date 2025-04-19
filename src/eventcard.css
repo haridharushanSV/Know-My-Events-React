@@ -1,0 +1,73 @@
+/* Reset and background */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url('./assets/bg.jpg'); /* Use relative path */
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Section styling */
+.section {
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Card styling */
+.card {
+  background-color: rgba(255, 255, 255, 0.9);
+  max-width: 300px;
+  width: 90%; /* Responsive width */
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.card img {
+  height: auto;
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Media Queries: Make it super responsive */
+@media (max-width: 768px) {
+  .section {
+    padding: 20px;
+  }
+
+  .card {
+    max-width: 90%;
+    padding: 15px;
+  }
+
+  .card img {
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .card img {
+    border-radius: 8px;
+  }
+}
